@@ -47,7 +47,8 @@ switch to the newly created *scratch* buffer."
   (with-current-buffer (get-buffer-create "*scratch*")
     (with-temp-message ""
       (when (zerop (buffer-size))
-        (insert initial-scratch-message)
+        (when initial-scratch-message
+          (insert initial-scratch-message))
         (set-buffer-modified-p nil)
         (funcall initial-major-mode))
       (when immortal-scratch-switch-to-respawned-scratch
